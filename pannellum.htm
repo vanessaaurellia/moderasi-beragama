@@ -26,7 +26,7 @@
         </div>
         
         <script>
-            function showPannellum(imageOutside, imageInside, houseName){
+            function showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName){
                 pannellum.viewer('panorama', {   
                     "default": {
                         "firstScene": "outside",
@@ -42,8 +42,8 @@
                             "panorama": imageOutside,
                             "hotSpots": [
                                 {
-                                    "pitch": -8,
-                                    "yaw": -10,
+                                    "pitch": pitch1,
+                                    "yaw": yaw1,
                                     "type": "scene",
                                     "sceneId": "inside"
                                 }
@@ -55,8 +55,8 @@
                             "panorama": imageInside,
                             "hotSpots": [
                                 {
-                                    "pitch": -6.8,
-                                    "yaw": 62,
+                                    "pitch": pitch2,
+                                    "yaw": yaw2,
                                     "type": "scene",
                                     "sceneId": "outside"
                                 }
@@ -83,8 +83,12 @@
                 }
             }
             var houseName = "mesjid"
-            var setImageOutside = "https://pannellum.org/images/alma.jpg";
-            var setImageInside = "https://pannellum.org/images/jfk.jpg"
+            var imageOutside = "https://pannellum.org/images/alma.jpg";
+            var imageInside = "https://pannellum.org/images/jfk.jpg";
+            var pitch1 = -8;
+            var pitch2 = -6.8;
+            var yaw1 = -10;
+            var yaw2 = 62;
 
             function openHouse(event, houseName) {
                 var i, content, link;
@@ -100,16 +104,24 @@
                 event.currentTarget.className += " active";
 
                 if (houseName == "masjid"){ 
-                    setImageOutside = "/images/masjid1.JPG";
-                    setImageInside = "/images/masjid2.JPG";
+                    imageOutside = "/images/masjid1.JPG";
+                    imageInside = "/images/masjid2.JPG";
+                    pitch1 = -8;
+                    pitch2 = -6.8;
+                    yaw1 = -10;
+                    yaw2 = 62;
                     $('#panorama').html('');
-                    showPannellum(setImageOutside, setImageInside, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
                 }
                 else if (houseName == "katolik"){ 
-                    setImageOutside = "/images/katolik1.JPG";
-                    setImageInside = "/images/katolik2.JPG";
+                    imageOutside = "/images/katolik1.JPG";
+                    imageInside = "/images/katolik2.JPG";
+                    pitch1 = -8;
+                    pitch2 = -6.8;
+                    yaw1 = 0;
+                    yaw2 = -2;
                     $('#panorama').html('');
-                    showPannellum(setImageOutside, setImageInside, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
                 }
                 else if (houseName == "kristen"){ 
                     $('#panorama').html('');
@@ -122,16 +134,24 @@
                     });
                 }
                 else if (houseName == "pura"){ 
-                    setImageOutside = "/images/pura1.JPG";
-                    setImageInside = "/images/pura2.JPG";
+                    imageOutside = "/images/pura1.JPG";
+                    imageInside = "/images/pura2.JPG";
+                    pitch1 = -18;
+                    pitch2 = -18;
+                    yaw1 = 205;
+                    yaw2 = -65;
                     $('#panorama').html('');
-                    showPannellum(setImageOutside, setImageInside, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
                 }
                 else if (houseName == "wihara"){ 
-                    setImageOutside = "/images/wihara1.JPG";
-                    setImageInside = "/images/wihara2.JPG";
+                    imageOutside = "/images/wihara1.JPG";
+                    imageInside = "/images/wihara2.JPG";
+                    pitch1 = -11.5;
+                    pitch2 = -40;
+                    yaw1 = 178;
+                    yaw2 = 0;
                     $('#panorama').html('');
-                    showPannellum(setImageOutside, setImageInside, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
                 }
                 else if (houseName == "konghucu"){ 
                     $('#panorama').html('');
@@ -150,8 +170,8 @@
                                 "panorama": "/images/konghucu1.JPG",
                                 "hotSpots": [
                                     {
-                                        "pitch": -8,
-                                        "yaw": -10,
+                                        "pitch": -23,
+                                        "yaw": -165,
                                         "type": "scene",
                                         "sceneId": "inside"
                                     }
@@ -163,10 +183,10 @@
                                 "panorama": "/images/konghucu2.JPG",
                                 "hotSpots": [
                                     {
-                                        "pitch": -6.8,
-                                        "yaw": 62,
+                                        "pitch": 12,
+                                        "yaw": 178,
                                         "type": "scene",
-                                        "sceneId": "outside"
+                                        "sceneId": "other"
                                     }
                                 ]
                             },
@@ -179,7 +199,7 @@
                                         "pitch": -6.8,
                                         "yaw": 62,
                                         "type": "scene",
-                                        "sceneId": "outside"
+                                        "sceneId": "inside"
                                     }
                                 ]
                             }
