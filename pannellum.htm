@@ -4,14 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Moderasi Beragama</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
         <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
         <link rel="stylesheet" href="pannellum.css">
     </head>
 
     <body>
-        <div id="masjid" class="content"></div>
-        <div id="katolik" class="content"></div>
+        <div id="panorama" class="content"></div>
         <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">Moderasi Beragama <img class="icon" src="images/arrow.svg"></button>
             <div id="myDropdown" class="dropdown-content">
@@ -26,95 +26,45 @@
         </div>
         
         <script>
-            pannellum.viewer('masjid', {   
-                "default": {
-                    "firstScene": "masjidOutside",
-                    "sceneFadeDuration": 1000,
-                    "autoLoad": true,
-                    "compass": false,
-                    "autoRotate": -2
-                },
-
-                "scenes": {
-                    "masjidOutside": {
-                        "hfov": 110,
-                        "pitch": -3,
-                        "yaw": 117,
-                        "type": "equirectangular",
-                        "panorama": "/images/masjid1.JPG",
-                        "hotSpots": [
-                            {
-                                "pitch": -2.1,
-                                "yaw": 132.9,
-                                "type": "scene",
-                                "sceneId": "masjidInside"
-                            }
-                        ]
+            function showPannellum(imageOutside, imageInside, houseName){
+                pannellum.viewer('panorama', {   
+                    "default": {
+                        "firstScene": "outside",
+                        "sceneFadeDuration": 1000,
+                        "autoLoad": true,
+                        "compass": false,
+                        "autoRotate": -2
                     },
 
-                    "masjidInside": {
-                        "hfov": 110,
-                        "yaw": 5,
-                        "type": "equirectangular",
-                        "panorama": "/images/masjid2.JPG",
-                        "hotSpots": [
-                            {
-                                "pitch": -0.6,
-                                "yaw": 37.1,
-                                "type": "scene",
-                                "sceneId": "masjidOutside",
-                                "targetYaw": -23,
-                                "targetPitch": 2
-                            }
-                        ]
+                    "scenes": {
+                        "outside": {
+                            "type": "equirectangular",
+                            "panorama": imageOutside,
+                            "hotSpots": [
+                                {
+                                    "pitch": -8,
+                                    "yaw": -10,
+                                    "type": "scene",
+                                    "sceneId": "inside"
+                                }
+                            ]
+                        },
+
+                        "inside": {
+                            "type": "equirectangular",
+                            "panorama": imageInside,
+                            "hotSpots": [
+                                {
+                                    "pitch": -6.8,
+                                    "yaw": 62,
+                                    "type": "scene",
+                                    "sceneId": "outside"
+                                }
+                            ]
+                        }
                     }
-                }
-            });
-
-            pannellum.viewer('katolik', {   
-                "default": {
-                    "firstScene": "katolikOutside",
-                    "sceneFadeDuration": 1000,
-                    "autoLoad": true,
-                    "compass": false,
-                    "autoRotate": -2
-                },
-
-                "scenes": {
-                    "katolikOutside": {
-                        "hfov": 110,
-                        "pitch": -3,
-                        "yaw": 117,
-                        "type": "equirectangular",
-                        "panorama": "/images/katolik1.JPG",
-                        "hotSpots": [
-                            {
-                                "pitch": -2.1,
-                                "yaw": 132.9,
-                                "type": "scene",
-                                "sceneId": "katolikInside"
-                            }
-                        ]
-                    },
-
-                    "katolikInside": {
-                        "hfov": 110,
-                        "yaw": 5,
-                        "type": "equirectangular",
-                        "panorama": "/images/katolik2.JPG",
-                        "hotSpots": [
-                            {
-                                "pitch": -0.6,
-                                "yaw": 37.1,
-                                "type": "scene",
-                                "sceneId": "katolikOutside",
-                                "targetYaw": -23,
-                                "targetPitch": 2
-                            }
-                        ]
-                    }
-                }
-            });
+                });
+            }
 
             function myFunction() {
                 document.getElementById("myDropdown").classList.toggle("show");
@@ -132,8 +82,11 @@
                     }
                 }
             }
+            var houseName = "mesjid"
+            var setImageOutside = "https://pannellum.org/images/alma.jpg";
+            var setImageInside = "https://pannellum.org/images/jfk.jpg"
 
-            function openHouse(evt, HouseName) {
+            function openHouse(event, houseName) {
                 var i, content, link;
                 content = document.getElementsByClassName("content");
                 for (i = 0; i < content.length; i++) {
@@ -143,8 +96,106 @@
                 for (i = 0; i < link.length; i++) {
                     link[i].className = link[i].className.replace(" active", "");
                 }
-                document.getElementById(HouseName).style.display = "block";
-                evt.currentTarget.className += " active";
+                document.getElementById("panorama").style.display = "block";
+                event.currentTarget.className += " active";
+
+                if (houseName == "masjid"){ 
+                    setImageOutside = "/images/masjid1.JPG";
+                    setImageInside = "/images/masjid2.JPG";
+                    $('#panorama').html('');
+                    showPannellum(setImageOutside, setImageInside, houseName);
+                }
+                else if (houseName == "katolik"){ 
+                    setImageOutside = "/images/katolik1.JPG";
+                    setImageInside = "/images/katolik2.JPG";
+                    $('#panorama').html('');
+                    showPannellum(setImageOutside, setImageInside, houseName);
+                }
+                else if (houseName == "kristen"){ 
+                    $('#panorama').html('');
+                    pannellum.viewer('panorama', {
+                        "autoLoad": true,
+                        "compass": false,
+                        "autoRotate": -2,
+                        "type": "equirectangular",
+                        "panorama": "/images/kristen.JPG"
+                    });
+                }
+                else if (houseName == "pura"){ 
+                    setImageOutside = "/images/pura1.JPG";
+                    setImageInside = "/images/pura2.JPG";
+                    $('#panorama').html('');
+                    showPannellum(setImageOutside, setImageInside, houseName);
+                }
+                else if (houseName == "wihara"){ 
+                    setImageOutside = "/images/wihara1.JPG";
+                    setImageInside = "/images/wihara2.JPG";
+                    $('#panorama').html('');
+                    showPannellum(setImageOutside, setImageInside, houseName);
+                }
+                else if (houseName == "konghucu"){ 
+                    $('#panorama').html('');
+                    pannellum.viewer('panorama', {   
+                        "default": {
+                            "firstScene": "outside",
+                            "sceneFadeDuration": 1000,
+                            "autoLoad": true,
+                            "compass": false,
+                            "autoRotate": -2
+                        },
+
+                        "scenes": {
+                            "outside": {
+                                "type": "equirectangular",
+                                "panorama": "/images/konghucu1.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -8,
+                                        "yaw": -10,
+                                        "type": "scene",
+                                        "sceneId": "inside"
+                                    }
+                                ]
+                            },
+
+                            "inside": {
+                                "type": "equirectangular",
+                                "panorama": "/images/konghucu2.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -6.8,
+                                        "yaw": 62,
+                                        "type": "scene",
+                                        "sceneId": "outside"
+                                    }
+                                ]
+                            },
+
+                            "other": {
+                                "type": "equirectangular",
+                                "panorama": "/images/konghucu3.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -6.8,
+                                        "yaw": 62,
+                                        "type": "scene",
+                                        "sceneId": "outside"
+                                    }
+                                ]
+                            }
+                        }
+                    });
+                }
+                else if (houseName == "kepercayaan"){ 
+                    $('#panorama').html('');
+                    pannellum.viewer('panorama', {
+                        "autoLoad": true,
+                        "compass": false,
+                        "autoRotate": -2,
+                        "type": "equirectangular",
+                        "panorama": "/images/kepercayaan.JPG"
+                    });
+                }
             }
 
             document.getElementById("defaultOpen").click();
