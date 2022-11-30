@@ -24,6 +24,24 @@
               <a class="link" onclick="openHouse(event, 'kepercayaan')">Penganut Kepercayaan</a>
             </div>
         </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <iframe src="https://www.youtube.com/embed/XN5sj-Lh25U" allowfullscreen frameborder="0"></iframe>
+                    <div class="informasi">
+                    <h2>Gereja Kristen Protestan Haleluya</h2>
+                    <p>Gereja Kristen Protestan Haleluya terletak di antara bangunan Gereja Katholik Santa Chatarina dan Pura Hindu Dharma serta berhadapan dengan anjungan DKI.Gereja ini dibangun tahun 1973 dan diresmikan tahun 1975. Bangunan utama meliputi ruang pastori, ruang ganti, ruang sound, dan ruang paling besar untuk jemaat. Di samping kanan depan, menyatu dengan bangunan gereja, terdapat menara setinggi 20 m yang pada puncaknya berornamen ayam jago, melambangkan kisah dari nats kitab injil, bahwa sebelum Yesus disalibkan akan terjadi penyangkalan Petrus, salah seorang murid Yesus, sebelum ayam berkokok (menjelang fajar) sebanyak tiga kali. Di menara ini terdapat lonceng.
+                        <br><br>
+                        Bangunan samping, yang pada awalnya dimaksudkan untuk rumah jaga, difungsikan sebagai ruang perpustakaan, aula, kantor, dapur, toilet, dan gerai cendera mata benda-benda rohani (kolportase). Selain untuk kegiatan bina iman anak-anak Sekolah Minggu dan anak-anak tingkat remaja, aula dan ruang perpustakaan juga digunakan sebagai ruang rapat.
+                        <br><br>
+                        Arsitektur Gereja ini merupakan campuran gaya Barat tahun 1930-an. Dinding bagian luar terbuat dari keramik berwarna putih. Di atas altar menghadap ke umat terdapat lukisan perjamuan kudus. Jendela terbuat dari kaca berlukiskan bunga tulip dan salib. Atap langit-langit terbuat dari kayu agar ruangan terkesan sejuk.
+                        <br><br>
+                        Sebagaimana halnya gereja di luar TMII, selain untuk kebaktian, Gereja Haleluya juga digunakan untuk pemberkatan pernikahan. Kegiatan lain yang bersifat keagamaan pun dilaksanakan di sini, antara lain perayaan Paskah, Natal, dan kegiatan retret. Hari Minggu digunakan untuk ibadat jemaat GPIB, sedang hari sabtu oleh Jemaat Advent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <script>
             function showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName){
@@ -82,6 +100,7 @@
                     }
                 }
             }
+
             var houseName = "mesjid"
             var imageOutside = "https://pannellum.org/images/alma.jpg";
             var imageInside = "https://pannellum.org/images/jfk.jpg";
@@ -89,6 +108,11 @@
             var pitch2 = -6.8;
             var yaw1 = -10;
             var yaw2 = 62;
+            var modal = document.getElementById("myModal");
+
+            var openModal = function() {
+                modal.style.display = "block";
+            };
 
             function openHouse(event, houseName) {
                 var i, content, link;
@@ -130,7 +154,16 @@
                         "compass": false,
                         "autoRotate": -2,
                         "type": "equirectangular",
-                        "panorama": "/images/kristen.JPG"
+                        "panorama": "/images/kristen.JPG",
+                        "hotSpots": [
+                            {
+                                "pitch": -8,
+                                "yaw": -10,
+                                "type": "scene",
+                                "sceneId": "",
+                                "clickHandlerFunc": openModal
+                            }
+                        ]
                     });
                 }
                 else if (houseName == "pura"){ 
