@@ -28,23 +28,40 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modal-body">
-                    <iframe src="https://www.youtube.com/embed/XN5sj-Lh25U" allowfullscreen frameborder="0"></iframe>
+                    <img id="info" src="images/1338099104.jpg">
+                    <iframe id="youtube" src="https://www.youtube.com/embed/XN5sj-Lh25U?start=108" allowfullscreen frameborder="0"></iframe>
                     <div class="informasi">
-                    <h2>Gereja Kristen Protestan Haleluya</h2>
-                    <p>Gereja Kristen Protestan Haleluya terletak di antara bangunan Gereja Katholik Santa Chatarina dan Pura Hindu Dharma serta berhadapan dengan anjungan DKI.Gereja ini dibangun tahun 1973 dan diresmikan tahun 1975. Bangunan utama meliputi ruang pastori, ruang ganti, ruang sound, dan ruang paling besar untuk jemaat. Di samping kanan depan, menyatu dengan bangunan gereja, terdapat menara setinggi 20 m yang pada puncaknya berornamen ayam jago, melambangkan kisah dari nats kitab injil, bahwa sebelum Yesus disalibkan akan terjadi penyangkalan Petrus, salah seorang murid Yesus, sebelum ayam berkokok (menjelang fajar) sebanyak tiga kali. Di menara ini terdapat lonceng.
-                        <br><br>
-                        Bangunan samping, yang pada awalnya dimaksudkan untuk rumah jaga, difungsikan sebagai ruang perpustakaan, aula, kantor, dapur, toilet, dan gerai cendera mata benda-benda rohani (kolportase). Selain untuk kegiatan bina iman anak-anak Sekolah Minggu dan anak-anak tingkat remaja, aula dan ruang perpustakaan juga digunakan sebagai ruang rapat.
-                        <br><br>
-                        Arsitektur Gereja ini merupakan campuran gaya Barat tahun 1930-an. Dinding bagian luar terbuat dari keramik berwarna putih. Di atas altar menghadap ke umat terdapat lukisan perjamuan kudus. Jendela terbuat dari kaca berlukiskan bunga tulip dan salib. Atap langit-langit terbuat dari kayu agar ruangan terkesan sejuk.
-                        <br><br>
-                        Sebagaimana halnya gereja di luar TMII, selain untuk kebaktian, Gereja Haleluya juga digunakan untuk pemberkatan pernikahan. Kegiatan lain yang bersifat keagamaan pun dilaksanakan di sini, antara lain perayaan Paskah, Natal, dan kegiatan retret. Hari Minggu digunakan untuk ibadat jemaat GPIB, sedang hari sabtu oleh Jemaat Advent.</p>
+                        <img class="close" src="images/x.svg">
+                        <h2 id="title">Gereja Kristen Protestan Haleluya</h2>
+                        <h4>INFORMASI</h4>
+                        <hr>
+                        <p id="desc">Gereja Kristen Protestan Haleluya terletak di antara bangunan Gereja Katholik Santa Chatarina dan Pura Hindu Dharma serta berhadapan dengan anjungan DKI.Gereja ini dibangun tahun 1973 dan diresmikan tahun 1975. Bangunan utama meliputi ruang pastori, ruang ganti, ruang sound, dan ruang paling besar untuk jemaat. Di samping kanan depan, menyatu dengan bangunan gereja, terdapat menara setinggi 20 m yang pada puncaknya berornamen ayam jago, melambangkan kisah dari nats kitab injil, bahwa sebelum Yesus disalibkan akan terjadi penyangkalan Petrus, salah seorang murid Yesus, sebelum ayam berkokok (menjelang fajar) sebanyak tiga kali. Di menara ini terdapat lonceng.
+                            <br><br>
+                            Bangunan samping, yang pada awalnya dimaksudkan untuk rumah jaga, difungsikan sebagai ruang perpustakaan, aula, kantor, dapur, toilet, dan gerai cendera mata benda-benda rohani (kolportase). Selain untuk kegiatan bina iman anak-anak Sekolah Minggu dan anak-anak tingkat remaja, aula dan ruang perpustakaan juga digunakan sebagai ruang rapat.
+                            <br><br>
+                            Arsitektur Gereja ini merupakan campuran gaya Barat tahun 1930-an. Dinding bagian luar terbuat dari keramik berwarna putih. Di atas altar menghadap ke umat terdapat lukisan perjamuan kudus. Jendela terbuat dari kaca berlukiskan bunga tulip dan salib. Atap langit-langit terbuat dari kayu agar ruangan terkesan sejuk.
+                            <br><br>
+                            Sebagaimana halnya gereja di luar TMII, selain untuk kebaktian, Gereja Haleluya juga digunakan untuk pemberkatan pernikahan. Kegiatan lain yang bersifat keagamaan pun dilaksanakan di sini, antara lain perayaan Paskah, Natal, dan kegiatan retret. Hari Minggu digunakan untuk ibadat jemaat GPIB, sedang hari sabtu oleh Jemaat Advent.</p>
+                        <a id="link" href="" target="_blank">WEBSITE</a>
                     </div>
                 </div>
             </div>
         </div>
         
         <script>
-            function showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName){
+            var houseName = "mesjid"
+            var imageOutside = "https://pannellum.org/images/alma.jpg";
+            var imageInside = "https://pannellum.org/images/jfk.jpg";
+            var pitch1 = -8;
+            var pitch2 = -6.8;
+            var pitch3 = 10;
+            var yaw1 = -10;
+            var yaw2 = 62;
+            var yaw3 = 10;
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+
+            function showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName){
                 pannellum.viewer('panorama', {   
                     "default": {
                         "firstScene": "outside",
@@ -77,6 +94,13 @@
                                     "yaw": yaw2,
                                     "type": "scene",
                                     "sceneId": "outside"
+                                },
+                                {
+                                    "pitch": pitch3,
+                                    "yaw": yaw3,
+                                    "type": "scene",
+                                    "cssClass": "custom-hotspot",
+                                    "clickHandlerFunc": openModal
                                 }
                             ]
                         }
@@ -101,18 +125,19 @@
                 }
             }
 
-            var houseName = "mesjid"
-            var imageOutside = "https://pannellum.org/images/alma.jpg";
-            var imageInside = "https://pannellum.org/images/jfk.jpg";
-            var pitch1 = -8;
-            var pitch2 = -6.8;
-            var yaw1 = -10;
-            var yaw2 = 62;
-            var modal = document.getElementById("myModal");
-
             var openModal = function() {
                 modal.style.display = "block";
             };
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
 
             function openHouse(event, houseName) {
                 var i, content, link;
@@ -132,22 +157,38 @@
                     imageInside = "/images/masjid2.JPG";
                     pitch1 = -8;
                     pitch2 = -6.8;
+                    pitch3 = -2;
                     yaw1 = -10;
                     yaw2 = 62;
+                    yaw3 = -5;
+                    document.getElementById("youtube").src = "https://www.youtube.com/embed/kHt71ClUs8s?start=8";
+                    document.getElementById("title").innerHTML = "Masjid Pangeran Diponegoro";
+                    document.getElementById("desc").innerHTML = "Masjid Pangeran Diponegoro adalah rumah ibadah umat islam yang dapat digunakan oleh pengunjung maupun masyarakat sekitar untuk menjalankan ibadah salat dan kegiatan lain seperti perayaan hari besar, ceramah, kajian agama, dan belajar al-qur'an. Masjid ini berdiri di atas lahan 2.850 m2 dengan luas bangunan 760 m2 dan terdiri dari dua lantai. Lantai satu untuk para jamaah, tempat wudhu, kamar mandi, ruang tunggu, perpustakaan, gudang dan dapur ; sedangkan lantai dua tempat imam, khatib, mihrap, serta menara berbentuk kubah berketinggian 26 meter untuk mengumandangkan adzan. <br><br>Arsitekturnya di ambil dari bentuk kebanyakan masjid di Indonesia, seperti masjid AL Azhar Jakarta dan masjid Syuhada, Yogyakarta.Pembangunannya di laksanakan tahun 1973 dan diresmikan tahun 1975 oleh Presiden Soeharto. Pangeran Diponogoro dipilih sebagai nama masjid karena pertimbangan untuk mengabdikan nama seorang tokoh pahlawan nasional yang sekaligus memimpin agama islam yang bersama masyarakat Yogyakarta gigih melawan penjajahan belanda. <br><br>Bangunan yang terletak di depan sebelah kanan gedung sasana kriya dan berbatasan dengan gereja Santa Chatarina “yang berarti menempati urutan pertama deretan rumah ibadah dari gerbang utama“ ini di maksudkan sebagai simbol kerukunan umat beragama di Indonesia.masjid ini tidak hanya di gunakan sebagai tempat ibadah bagi umat islam di lingkungan TMII, tetapi juga bagi pengunjung dan masyarakat sekitarnya, baik perorangan maupun berjamaan, termasuk salat jumat (jumatan) dan salat taraweh pada bulan Ramadhan. Namun untuk hari-hari besar, seperti Idhul Fitri dan Idhul Adha, pelaksanaan salat dilakukan di Plaza Tugu Api Pancasila. Ceramah keagamaan yang bertujuan untuk menambah pengetahuan atau sekadar mengingatkan kembali aturan kehidupan dalam beragamapun dilaksanakan di masjid ini. <br><br>Selain kegiatan rutin keagamaan, masjid Pangeran Diponogoro juga bisa digunakan untuk akad nikah dan dapat dilanjutkan dengan syukuran, baik secara sederhana maupun agak meriah, dengan menambahkan tenda atau “bila berniat melanjutkan resepsi“ menggunakan Sasana Utomo ataupun Sasono Adi Guno yang berjarak sekitar 100 meter. <br><br>Bangunan masjid ini tidak memiliki hiasan dekoratif, atapnya berbentuk kubah (doom) menyerupai gaya Bizantium yang dipengaruhi struktur ruangan Pantheon (Yunani Kuno), yang mengadung makna bahwa kehidupan manusia merupakan bagian kecil udari struktur alam semesta dan bernaung di bawahnya.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/masjid-pangeran-diponegoro";
                     $('#panorama').html('');
-                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
                 }
                 else if (houseName == "katolik"){ 
                     imageOutside = "/images/katolik1.JPG";
                     imageInside = "/images/katolik2.JPG";
                     pitch1 = -8;
                     pitch2 = -6.8;
+                    pitch3 = 0;
                     yaw1 = 0;
                     yaw2 = -2;
+                    yaw3 = 175;
+                    document.getElementById("youtube").src = "https://www.youtube.com/embed/b0IFSLghcC8?start=18";
+                    document.getElementById("title").innerHTML = "Gereja Katolik Santa Catharina";
+                    document.getElementById("desc").innerHTML = "Gereja Santa Chatarina adalah rumah tempat ibadah umat Katholik Roma. Letaknya bersampingan dengan Masjid Pangeran Diponogoro dan Gereja Kristen Haleluya, Gereja Santa Catharina dibangun tahun 1973 dan diresmikan tahun 1975 dengan luas bangunan 1.030 m2 di atas lahan seluas 2.860 m2. <br><br>Bentuk bangunan gereja ini merupakan tiruan gereja katholik pertama di Indonesia, yaitu Gereja Santa Catharina di Surabaya. Nama Chatarina diambil dari nama tokoh suci perempuan yang mengabdikan seluruh hidupnya untuk mempertahankan keyakinan dan meninggal sebagai martir karena ketaatannya terhadap Tuhan Yesus. Gaya arsitekturnya dipengaruhi gaya Roma kuno, tetapi atapnya memiliki ciri khas bangunan tradisional Jawa ; tidak memiliki hiasan dekoratif, hanya jendela yang terbuat dari kaca diffuse bergambar salib. Garis - garis yang berkaitan dengan struktur atap mengesankan pengaruh Roma tersebut. <br><br>Secara keseluruhan rumah ibadah ini terdiri dua bangunan, yakni bangunan utama dan aula. Bangunan utama untuk ruang jemaat dan ruang pengampunan dosa, di depannya terdapat menara lengkap dengan lonceng gereja dan puncaknya bersalib; sedang aula sekaligus menjadi ruang perpustakaan, kantor, ruang pastor, dan toilet. Jika sedang ada misa/ruang perpustakaan digunakan untuk Sekolah MInggu bagi anak-anak di bawah umur 10 tahun. <br><br>Kegiatan misa dilaksanakan setiap hari Minggu sebanyak dua kali dan pada hari-hari besar, seperti perayaan Minggu Palem, Kamis Putih, Jumat Agung, Minggu Paskah dan Natal. Umat yang mengikuti misa terdiri atas karyawan TMII, masyarakat sekitar, dan pengunjung. Gereja juga terbuka untuk umum, terutama bagi mereka yang ingin melaksanakan pemberkatan pernikahan dapat dilanjutkan dengan resepsi di berbagai tempat di lingkungan TMII, baik di dalam gedung ( indoor) maupun di luar gedung (outdoor).";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/gereja-katolik-santa-catharina";
                     $('#panorama').html('');
-                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
                 }
                 else if (houseName == "kristen"){ 
+                    document.getElementById("youtube").src = "https://www.youtube.com/embed/XN5sj-Lh25U?start=108";
+                    document.getElementById("title").innerHTML = "Gereja Kristen Protestan Haleluya";
+                    document.getElementById("desc").innerHTML = "Gereja Kristen Protestan Haleluya terletak di antara bangunan Gereja Katholik Santa Chatarina dan Pura Hindu Dharma serta berhadapan dengan anjungan DKI.Gereja ini dibangun tahun 1973 dan diresmikan tahun 1975. Bangunan utama meliputi ruang pastori, ruang ganti, ruang sound, dan ruang paling besar untuk jemaat. Di samping kanan depan, menyatu dengan bangunan gereja, terdapat menara setinggi 20 m yang pada puncaknya berornamen ayam jago, melambangkan kisah dari nats kitab injil, bahwa sebelum Yesus disalibkan akan terjadi penyangkalan Petrus, salah seorang murid Yesus, sebelum ayam berkokok (menjelang fajar) sebanyak tiga kali. Di menara ini terdapat lonceng. <br><br>Bangunan samping, yang pada awalnya dimaksudkan untuk rumah jaga, difungsikan sebagai ruang perpustakaan, aula, kantor, dapur, toilet, dan gerai cendera mata benda-benda rohani (kolportase). Selain untuk kegiatan bina iman anak-anak Sekolah Minggu dan anak-anak tingkat remaja, aula dan ruang perpustakaan juga digunakan sebagai ruang rapat. <br><br>Arsitektur Gereja ini merupakan campuran gaya Barat tahun 1930-an. Dinding bagian luar terbuat dari keramik berwarna putih. Di atas altar menghadap ke umat terdapat lukisan perjamuan kudus. Jendela terbuat dari kaca berlukiskan bunga tulip dan salib. Atap langit-langit terbuat dari kayu agar ruangan terkesan sejuk. <br><br>Sebagaimana halnya gereja di luar TMII, selain untuk kebaktian, Gereja Haleluya juga digunakan untuk pemberkatan pernikahan. Kegiatan lain yang bersifat keagamaan pun dilaksanakan di sini, antara lain perayaan Paskah, Natal, dan kegiatan retret. Hari Minggu digunakan untuk ibadat jemaat GPIB, sedang hari sabtu oleh Jemaat Advent.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/gereja-kristen-protestan-haleluya";
                     $('#panorama').html('');
                     pannellum.viewer('panorama', {
                         "autoLoad": true,
@@ -157,10 +198,10 @@
                         "panorama": "/images/kristen.JPG",
                         "hotSpots": [
                             {
-                                "pitch": -8,
-                                "yaw": -10,
+                                "pitch": 0,
+                                "yaw": 170,
                                 "type": "scene",
-                                "sceneId": "",
+                                "cssClass": "custom-hotspot",
                                 "clickHandlerFunc": openModal
                             }
                         ]
@@ -171,10 +212,16 @@
                     imageInside = "/images/pura2.JPG";
                     pitch1 = -18;
                     pitch2 = -18;
+                    pitch3 = 0;
                     yaw1 = 205;
                     yaw2 = -65;
+                    yaw3 = 175;
+                    document.getElementById("youtube").src = "https://www.youtube.com/embed/0YgveucgRxQ?start=11";
+                    document.getElementById("title").innerHTML = "Pura Penataran Agung Kertabhumi";
+                    document.getElementById("desc").innerHTML = "Pura Hindu Dharma Penataran Agung Kertabhumi adalah tempat peribadatan umat Hindu.Pura ini terletak di Anjungan Daerah Lampung, diapit oleh Gereja Kristen Protestan Haleluya dan Wihara Budha.Arsitektur pura ini mengambil model pura-pura Bali sedang bangunannya didasari oleh filsafat astha kosala kosali. <br><br>Bengunan utama terdiri atas pintu gerbang utama Candi Bentar, Balai Gong dan Kul-Kul, Padu Rasa, dan Atlar tempat pemujaan (pad masana). Masing-masing bangunan memiliki fungsi terdiri : gerbang utama sebagai pintu masuk pada saat upacara besar ( yadnya), balai kul-kul untuk tempat kentongan, dan balai gong untuk pertunjukan kesenian.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/pura-penataran-agung-kertabhumi";
                     $('#panorama').html('');
-                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
                 }
                 else if (houseName == "wihara"){ 
                     imageOutside = "/images/wihara1.JPG";
@@ -184,9 +231,13 @@
                     yaw1 = 178;
                     yaw2 = 0;
                     $('#panorama').html('');
-                    showPannellum(imageOutside, imageInside, pitch1, pitch2, yaw1, yaw2, houseName);
+                    showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
                 }
                 else if (houseName == "konghucu"){ 
+                    document.getElementById("youtube").src = "https://www.youtube.com/embed/iNNZFbJGA88";
+                    document.getElementById("title").innerHTML = "Klenteng Kong Miao";
+                    document.getElementById("desc").innerHTML = "Kelenteng Kong Miao adalah rumah ibadah umat agaman khonghucu. Kelenteng terletak berdampingan dengan deretan rumah ibadah lainnya yang sudah ada di TMII, yakni: Masjid Pangeran Diponogoro, Gereja Katholik Santa Chatarina, Gereja Kristen Protestan Haleluya, Pura Hindu Darma,Wihara Arya Dwipa Arama, dan Sasana Adirasa mencerminkan keragaman dan kerukunan umat beragama di Indonesia. <br><br>Pembangunan Kelenteng Kong Miao diawali dengan peletakan batu pertama oleh Menteri Agama RI, Dr. Maftuh Basyuni pada 2 februari 2009, dan diresmikan oleh Ketua Yayasan Harapan Kita, Hj.Siti Hardiyanti Rukmana pada 23 Desember 2010. Saat peresmian kelenteng ini dikunjungi oleh Presiden Republik Indonesia Susilo Bambang Yudhoyono bersama Ibu Ani Yudhoyono usai membuka musyawarah nasional Majelis Tinggi Agama Konghucu Indonesia (Matakin) ke XXI menyempatkan menanam pohon cemara di halaman klenteng. <br><br>Kompleks kelenteng kong miao terdiri tiga bangunan inti, yakni Tian Tan (Altar Suci), Da Cheng Dian (Kelenteng Nabi Agung) dan Qi Fu Dian (Kelenteng keberkahan). Bangunan pertama adalan Tian Tan berbentuk bundar melambang kesempurnaan (Tuhan) dan beratap tiga susun melambangkan Tian (Tuhan), atap paling atas;Ren (Manusia), atap tengah; dan Di (bumi atau alam semesta), atap paling bawah. di atas atap terdapat guci tempat meletakkan dupa (hiolo) berfungsi untuk bersembahyang kepada Tuhan. <br><br>Bangunan kedua, Dan Cheng Dian atau Kelenteng Nabi berbentuk bangunan empat persegi panjang bercirikan arsitektur khas tiongkok memiliki dua lantai. Lantai bawah digunakan untuk kantor dan perpustakaan, sedangkan lantai atas berisi altar Tuhan, altar Nabi dan tempat untuk kebaktian.bangunan ketiga, Qi Fu Dian adalah kelenteng keberkahan, dimana di dalamnya terdapat altar untuk menghormati Para Suci (Spirit, Malaikat,Leluhur). Bangunan ini berbentuk bujung sangkar dengan luas 81 m2 ditopang delapan tiang.Pada atap bangunan terdapat simbol sepasang naga dan lambing agama konghucu.Di dalam kelenteng ini terdapat lilin-lilin yang berjajar serta buah - buah diletakkan dalam piring-piring yang berjajar serta altar untuk bersembahyang. <br><br>Kelenteng Kong Miao dilengkapi ornamen pendukung antara lain: Xiang Lu (Hio Lo) atau tempat pembakaran hio, Pintu Gerbang sepasang Singa, Naga, Kilin, Patung 12 Shio, dan Kura-kura Kepala Naga terdapat di halaman.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/klenteng-kong-miao";
                     $('#panorama').html('');
                     pannellum.viewer('panorama', {   
                         "default": {
@@ -207,6 +258,13 @@
                                         "yaw": -165,
                                         "type": "scene",
                                         "sceneId": "inside"
+                                    },
+                                    {
+                                        "pitch": -19,
+                                        "yaw": 2,
+                                        "type": "scene",
+                                        "cssClass": "custom-hotspot",
+                                        "clickHandlerFunc": openModal
                                     }
                                 ]
                             },
@@ -240,13 +298,27 @@
                     });
                 }
                 else if (houseName == "kepercayaan"){ 
+                    document.getElementById("youtube").style.display = "none";
+                    document.getElementById("info").style.display = "block";
+                    document.getElementById("title").innerHTML = "Sasano Adiroso Pangeran Sambernyowo";
+                    document.getElementById("desc").innerHTML = "Sasana Adirasa Pangeran Samber Nyawa merupakan tempat ibadah kaum penghayat aliran kepercayaan dan kebatinan. Pangeran samber nyawa adalah tokoh bangsawan (priyayi) dari Surakarta yang terkenal sangat sakti dan pandai mengatur siasat perang dan tidak mau bekerjasama dengan VOC. <br><br>Terletak di Taman Mini Indonesia Indah, Jakarta. Merupakan tempat bagi semua penganut kepercayaan dan agama untuk melakukan sarasehan, tukar pikiran, dan saling menghargai dalam hal menyangkut Ketuhanan Yang Maha Esa. Sasono artinya tempat, sedangkan adiroso artinya rasa sejati. Gedung ini juga tempat menyimpan buku-buku dan karya tulis yang berisi pelajaran budi pekerti kemanusiaan sebagai pengejawantahan Pancasila. Gedung Sasono Adiroso terdiri atas dua bangunan utama, yakni pendopo dan Gedung Pasucen. Pendopo untuk sarasehan, sedangkan Pasucen untuk menyucikan diri di hadapan Tuhan Yang Maha Esa. Pendopo besar yang beratap susun tiga mencerminkan tiga tingkatan Ilmu Ketuhanan, yaitu Ilmu Kanuragan, Ilmu Sangkan Paraning Dumadi, dan Ilmu Kasampurnaning Dumadi.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/sasono-adiroso-pangeran-sambernyowo";
                     $('#panorama').html('');
                     pannellum.viewer('panorama', {
                         "autoLoad": true,
                         "compass": false,
                         "autoRotate": -2,
                         "type": "equirectangular",
-                        "panorama": "/images/kepercayaan.JPG"
+                        "panorama": "/images/kepercayaan.JPG",
+                        "hotSpots": [
+                            {
+                                "pitch": 0,
+                                "yaw": 0,
+                                "type": "scene",
+                                "cssClass": "custom-hotspot",
+                                "clickHandlerFunc": openModal
+                            }
+                        ]
                     });
                 }
             }
