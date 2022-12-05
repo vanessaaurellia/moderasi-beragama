@@ -224,14 +224,55 @@
                     showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
                 }
                 else if (houseName == "wihara"){ 
-                    imageOutside = "/images/wihara1.JPG";
-                    imageInside = "/images/wihara2.JPG";
-                    pitch1 = -11.5;
-                    pitch2 = -40;
-                    yaw1 = 178;
-                    yaw2 = 0;
+                    document.getElementById("youtube").src = "hhttps://www.youtube.com/embed/R6m8BO76uxg?start=110";
+                    document.getElementById("title").innerHTML = "Wihara Arya Dwipa Arama";
+                    document.getElementById("desc").innerHTML = "Bentuk bangunan rumah ibadah Budha ini mengambil pola stupa candi Borobudur.Stupa merupakan simbol bangunan tempat-tempat ibadah bagi umat Budha. Dengan lampang Cakra, Prapta, Patina Suta, Umat Budha akan selalu menyadari bahwa kehidupan manusia berputar seperti sebuah roda. <br><br>Ceiling ruang ibadah berbentuk setengah lingkaran berwarna kuning emas agar tercipta suasana seperti di dalam nirwana.Patung Budha ditempatkan di sebelah barat.Gedung ibadah dikelilingi kolam air. Selain penting bagi umat Budha, keberadaan kolam air dari segi arsitektur seakan-akan mengangkat bangunan dan secara fungsional memberikan suhu dingin. <br><br>Wihara ini melayani umat yang akan melakukan ibadah baik secara rutin maupun pada hari-hari besar umat Budha. Pada hari raya Waisak dan hari Tilem atau malam purnama, Wihara Arya Dwipa Arama menyelenggrakan upacara puncak.Wihara ini juga berfungsi sebagai tempat menghimpun informasi tentang agama Budha di Indonesia.";
+                    document.getElementById("link").href = "https://www.tamanmini.com/tempat-ibadah/wihara-arya-dwipa-arama";
                     $('#panorama').html('');
-                    showPannellum(imageOutside, imageInside, pitch1, pitch2, pitch3, yaw1, yaw2, yaw3, houseName);
+                    pannellum.viewer('panorama', {   
+                        "default": {
+                            "firstScene": "outside",
+                            "sceneFadeDuration": 1000,
+                            "autoLoad": true,
+                            "compass": false,
+                            "autoRotate": -2
+                        },
+
+                        "scenes": {
+                            "outside": {
+                                "type": "equirectangular",
+                                "panorama": "/images/wihara1.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -11.5,
+                                        "yaw": 178,
+                                        "type": "scene",
+                                        "sceneId": "inside"
+                                    },
+                                    {
+                                    "pitch": -20,
+                                    "yaw": 0,
+                                    "type": "scene",
+                                    "cssClass": "custom-hotspot",
+                                    "clickHandlerFunc": openModal
+                                }
+                                ]
+                            },
+
+                            "inside": {
+                                "type": "equirectangular",
+                                "panorama": "/images/wihara2.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -40,
+                                        "yaw": 0,
+                                        "type": "scene",
+                                        "sceneId": "outside"
+                                    }
+                                ]
+                            }
+                        }
+                    });
                 }
                 else if (houseName == "konghucu"){ 
                     document.getElementById("youtube").src = "https://www.youtube.com/embed/iNNZFbJGA88";
@@ -287,10 +328,30 @@
                                 "panorama": "/images/konghucu3.JPG",
                                 "hotSpots": [
                                     {
-                                        "pitch": -6.8,
-                                        "yaw": 62,
+                                        "pitch": -45,
+                                        "yaw": 175,
                                         "type": "scene",
-                                        "sceneId": "inside"
+                                        "sceneId": "other2"
+                                    }
+                                ]
+                            },
+
+                            "other2": {
+                                "type": "equirectangular",
+                                "panorama": "/images/konghucu4.JPG",
+                                "hotSpots": [
+                                    {
+                                        "pitch": -10,
+                                        "yaw": 180,
+                                        "type": "scene",
+                                        "sceneId": "outside"
+                                    },
+                                    {
+                                        "pitch": -19,
+                                        "yaw": 2,
+                                        "type": "scene",
+                                        "cssClass": "custom-hotspot",
+                                        "clickHandlerFunc": openModal
                                     }
                                 ]
                             }
