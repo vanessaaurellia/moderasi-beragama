@@ -129,11 +129,17 @@
             };
 
             span.onclick = function() {
+                var iframe = document.querySelector( "iframe" );
+                var temp = iframe.src; 
+                iframe.src = temp;
                 modal.style.display = "none";
             }
 
             window.onclick = function(event) {
                 if (event.target == modal) {
+                    var iframe = document.querySelector( "iframe" );
+                    var temp = iframe.src; 
+                    iframe.src = temp;
                     modal.style.display = "none";
                 }
             }
